@@ -6,10 +6,12 @@ import css from "./MovieReviews.module.css"
 const MovieReviews = () => {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
 
      useEffect(() => {
         async function getData() {
             try {
+                 setIsLoading(true);
                 const data = await getMoviesReviews(movieId);
                 setReviews(data)
              
@@ -18,15 +20,18 @@ const MovieReviews = () => {
             catch (error) {
                 console.log(error);
             }
+               finally {
+         setIsLoading(false);
+    }
         }
         getData();
     },[movieId])
 
     return (
-           <div>
-           
-            <ul>
-                {reviews.length> 0 ? (reviews.map((review) => (
+        <div>
+            {isLoading ? (<p>Loading...</p>) : (
+                  <ul>
+                {reviews.length > 0 ? (reviews.map((review) => (
                     <li key={review.id}>
 
                         <p className={css.name}>Author: {review.author }</p>
@@ -37,6 +42,10 @@ const MovieReviews = () => {
       ) }
 
          </ul>
+                
+                     ) }
+           
+          
         </div>
          )
 }
