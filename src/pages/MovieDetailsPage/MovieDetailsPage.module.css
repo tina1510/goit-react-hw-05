@@ -1,0 +1,29 @@
+.poster {
+  width: 200px;
+  height: 300px;
+}
+.filmCard {
+  display: flex;
+  gap: 24px;
+}
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+.textBold {
+  font-weight: bold;
+  font-size: 18px;
+}
+.information {
+  font-size: 20px;
+  font-weight: bold;
+}
+.link {
+  font-size: 18px;
+  color: blue;
+  text-decoration: none;
+}
+.btnBack {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+}
