@@ -7,7 +7,7 @@ import css from "./MoviesPage.module.css"
 const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams("");
-   
+   const [isLoading, setIsLoading] = useState(false);
     const onSearch = (query) => {
         setSearchParams({query});
     }
@@ -17,13 +17,17 @@ const MoviesPage = () => {
             return
                     }
         async function getData() {
-                try {
+            try {
+                      setIsLoading(true);
                 const data = await fetcSearchhMovies(query);
                 setMovies(data);
             }
             catch (error) {
                 console.log(error);
             }
+               finally {
+         setIsLoading(false);
+    }
         }
         getData();
     }, [searchParams]);
@@ -37,6 +41,7 @@ const MoviesPage = () => {
           
                 <input className={css.input} type="text" defaultValue= "" onChange={(e) => setSearchParams(e.target.value)}></input>
             <button className={css.btnSearch} onClick={handleSearchButtonClick} type="button">Search</button>
+            {isLoading && (<p>Loading...</p>)}
           
              <div>
       
