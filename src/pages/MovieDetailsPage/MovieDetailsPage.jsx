@@ -33,7 +33,7 @@ const location = useLocation();
                 <div className={css.filmCard}>
                        <img className={css.poster} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
                     <div><p className={css.title}>{movie.title} ({movie.release_date.split('-')[0]})</p>
-                    <p>User Score: {movie.vote_average * 10}%</p>
+                    <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
                     
                  <p className={css.textBold}> Overview</p>
                     <p>{movie.overview}</p>
