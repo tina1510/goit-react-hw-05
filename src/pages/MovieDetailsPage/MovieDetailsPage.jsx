@@ -16,6 +16,7 @@ const location = useLocation();
             try {
                 const data = await fetchMoviesID(movieId);
                 setMovie(data)    
+                console.log(data);
             }
             catch (error) {
                 console.log(error);
@@ -30,7 +31,7 @@ const location = useLocation();
             <Link to={backLinkRef.current}><button className={css.btnBack}>Go to back</button></Link>
             {movie && (
                 <div className={css.filmCard}>
-                       <img className={css.poster} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
+                       <img className={css.poster} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
                     <div><p className={css.title}>{movie.title} ({movie.release_date.split('-')[0]})</p>
                     <p>User Score: {movie.vote_average * 10}%</p>
                     
